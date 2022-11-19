@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { isProtected } from "../config/isProtected";
 function Home() {
 
   const navigate = useNavigate()
@@ -19,4 +18,4 @@ function Home() {
   );
 }
 
-export default isProtected(Home);
+export default Home

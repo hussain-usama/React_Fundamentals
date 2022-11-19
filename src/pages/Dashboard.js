@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
-import { isProtected } from "../config/isProtected";
+import { isProtected } from "../config/RouteTypes";
 import { fetchUsers } from "../redux/Reducers/ApiSlice";
 
 
@@ -47,4 +47,4 @@ function Dahboard() {
   );
 }
 
-export default isProtected(Dahboard);
+export default Dahboard
