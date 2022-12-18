@@ -5,6 +5,7 @@ import { PrivateRoutes, PublicRoutes } from "./RouteTypes";
 const Login = lazy(() => import("../pages/Login"))
 const Home = lazy(() => import("../pages/Home"))
 const Dashboard = lazy(() => import("../pages/Dashboard"))
+const Post = lazy(() => import("../pages/Post"))
 
 function RouterComp() {
     let auth = localStorage.getItem("token")
@@ -13,9 +14,9 @@ function RouterComp() {
             <Suspense>
                 <Routes>
                     <Route path="/" element={
-                    <PublicRoutes>
-                        <Login />
-                    </PublicRoutes>} />
+                        <PublicRoutes>
+                            <Login />
+                        </PublicRoutes>} />
                     <Route path="/home" element={
                         <PrivateRoutes>
                             <Home />
@@ -24,6 +25,11 @@ function RouterComp() {
                         <PrivateRoutes>
                             <Dashboard />
                         </PrivateRoutes>} />
+                        <Route path="/posts/:id" element={
+                        <PrivateRoutes>
+                            <Post />
+                        </PrivateRoutes>} />
+
                 </Routes>
             </Suspense>
         </>

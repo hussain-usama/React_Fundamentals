@@ -9,3 +9,6 @@ export const routes = [
     { component: Dashboard, public: false, path: '/dashboard' },
     { component: Home, public: false, path: '/home' },
 ]
+
+
+/* NOT USING THIS FILE */

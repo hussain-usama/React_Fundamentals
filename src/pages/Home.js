@@ -6,14 +6,11 @@ function Home() {
 
   const {data,loader,error}=useFetch("https://jsonplaceholder.typicode.com/posts")
   const navigate = useNavigate()
-  const navigateFunction = () => {
-    localStorage.removeItem('token')
-    navigate('/')
-  }
 
   const checkPost=(index)=>{
     try {
       console.log(index)
+      navigate(`/posts/${index+1}`)
     } catch (error) {
       
     }
@@ -22,6 +19,7 @@ function Home() {
   return (
     <div className="">
       <h1>HOME</h1>
+      <h3>All Posts</h3>
       {(loader || data.length === 0) ?
         <h3>Loading...</h3>
         :
@@ -31,7 +29,6 @@ function Home() {
           })}
         </>
       }
-      <button onClick={navigateFunction}>Logout</button>
     </div>
   );
 }
