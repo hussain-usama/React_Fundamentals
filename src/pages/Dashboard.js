@@ -22,7 +22,8 @@ function Dahboard() {
 
   return (
     <div className="">
-      <h1>Dashboard</h1>
+      <h1>DASHBOARD</h1>
+      <h3>User List</h3>
       {
         ApiSlice.status==="loading" ?
         <h1>Loading .....</h1>

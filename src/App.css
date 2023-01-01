@@ -32,7 +32,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
+}
+
+.inputField {
+  height: 25px;
+  width: 300px;
+  border: 1px solid grey;
+  border-radius: 5px;
 }

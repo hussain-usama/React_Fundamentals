@@ -6,6 +6,7 @@ const Login = lazy(() => import("../pages/Login"))
 const Home = lazy(() => import("../pages/Home"))
 const Dashboard = lazy(() => import("../pages/Dashboard"))
 const Post = lazy(() => import("../pages/Post"))
+const AddPost = lazy(() => import("../pages/Forms/AddPost"))
 
 function RouterComp() {
     let auth = localStorage.getItem("token")
@@ -25,9 +26,13 @@ function RouterComp() {
                         <PrivateRoutes>
                             <Dashboard />
                         </PrivateRoutes>} />
-                        <Route path="/posts/:id" element={
+                    <Route path="/posts/:id" element={
                         <PrivateRoutes>
                             <Post />
+                        </PrivateRoutes>} />
+                    <Route path="/addPost" element={
+                        <PrivateRoutes>
+                            <AddPost />
                         </PrivateRoutes>} />
 
                 </Routes>

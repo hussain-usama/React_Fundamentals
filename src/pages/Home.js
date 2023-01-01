@@ -19,7 +19,10 @@ function Home() {
   return (
     <div className="">
       <h1>HOME</h1>
-      <h3>All Posts</h3>
+      <div className="d-flex">
+        <h3>All Posts</h3>
+        <button onClick={()=>navigate("/addPost")}>Add Post</button>
+      </div>
       {(loader || data.length === 0) ?
         <h3>Loading...</h3>
         :

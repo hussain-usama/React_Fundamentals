@@ -10,7 +10,7 @@ export const LoginSlice = createSlice({
     initialState,
     reducers: {
         loginData: (state, action) => {
-            console.log('action.payload ',action.payload )
+            console.log('login payload ',action.payload )
             return {
                 ...state,
                 userObj: { ...action.payload },
