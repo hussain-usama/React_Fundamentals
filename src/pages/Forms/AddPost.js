@@ -8,6 +8,12 @@ const initialValues = {
   desc: "",
   email: "",
   comments: "",
+  phoneNo:["",""],
+  social:{
+    twitter:"",
+    facebook:""
+  },
+
 }
 const onSubmit = formData => {
   console.log("values", formData)
@@ -46,7 +52,21 @@ function AddPost() {
 
         <label>COMMENTS</label><br />
         <Field as="textarea" className="inputField" name="comments"/>
-        <ErrorMessage name="comments"/>
+        <br />
+
+        {/*FORMIK NESTED OBJECT  */}
+        <label>FACEBOOK</label><br />
+        <Field as="textarea" className="inputField" name="social.facebook"/>
+        <br />
+        <label>TWITTER</label><br />
+        <Field as="textarea" className="inputField" name="social.twitter"/>
+        <br />
+        {/* FORMIK ARRAY */}
+        <label>ADDRESS 1</label><br />
+        <Field as="textarea" className="inputField" name="phoneNo[0]"/>
+        <br />
+        <label>ADDRESS 2</label><br />
+        <Field as="textarea" className="inputField" name="phoneNo[1]"/>
         <br />
 
         <button type="submit" style={{ marginTop: '2rem' }} >SUBMIT</button>
