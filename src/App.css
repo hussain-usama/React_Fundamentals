@@ -44,3 +44,7 @@
   border: 1px solid grey;
   border-radius: 5px;
 }
+.errorField{
+  color: red;
+  margin: 0;
+}

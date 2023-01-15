@@ -1,57 +1,57 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
+import { Formik, Form , Field, ErrorMessage} from "formik";
+import * as Yup from 'yup';
 
-const initialValues={
-  title:"",
-  desc:"",
-  email:""
+const initialValues = {
+  title: "",
+  desc: "",
+  email: "",
+  comments: "",
 }
-const onSubmit=formData=>{
-  console.log("avlues",formData)
+const onSubmit = formData => {
+  console.log("values", formData)
 }
 
-const validate=formData=>{
-  let error={}
-  if(!formData.title){
-    error.title="Required"
-  }
-  if(!formData.desc){
-    error.desc="Required"
-  }
-  if(!formData.email){
-    error.email="Required"
-  }
-  // else if(){
-  //   error.email="Innvalid email"
-  // }
-}
+const validateform = Yup.object({
+  title: Yup.string().required("Title is Required"),
+  desc: Yup.string().required("Description is Required"),
+  email: Yup.string().email("Invalid Email format").required("Email is Required"),
+})
+
 function AddPost() {
 
-  const formik=useFormik({
-    initialValues,
-    onSubmit,
-    validate
-  })
-  
-
-
   return (
-    <div className="">
-      <form onSubmit={formik.submitForm}>
-      <h1>ADD POST HERE</h1>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={ onSubmit}
+      validationSchema={validateform}
+    >
+      <Form>
+        <h1>ADD POST HERE</h1>
         <label>TITLE</label><br />
-        <input type={"text"} className="inputField" name="title" value={formik.values.title} onChange={formik.handleChange} />
+
+        <Field className="inputField" name="title"/>
+        <ErrorMessage className="errorField" component={"div"} name="title"/>
         <br />
         <label>DESCRIPTION</label><br />
-        <input type={"text"} className="inputField" name="desc" value={formik.values.desc} onChange={formik.handleChange} />
+        <Field className="inputField" name="desc"/>
+        <ErrorMessage className="errorField" component={"div"} name="desc"/>
         <br />
+
         <label>EMAIL</label><br />
-        <input type={"text"} className="inputField" name="email" value={formik.values.email} onChange={formik.handleChange} />
+        <Field className="inputField" name="email"/>
+        <ErrorMessage className="errorField" component={"div"} name="email"/>
         <br />
-        <button style={{ marginTop: '2rem' }} >SUBMIT</button>
-      </form>
-    </div>
+
+        <label>COMMENTS</label><br />
+        <Field as="textarea" className="inputField" name="comments"/>
+        <ErrorMessage name="comments"/>
+        <br />
+
+        <button type="submit" style={{ marginTop: '2rem' }} >SUBMIT</button>
+      </Form>
+    </Formik>
   );
 }
 
