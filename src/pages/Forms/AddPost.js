@@ -32,6 +32,8 @@ function AddPost() {
       initialValues={initialValues}
       onSubmit={ onSubmit}
       validationSchema={validateform}
+      validateOnBlur={false}
+      validateOnChange={false}
     >
       <Form>
         <h1>ADD POST HERE</h1>
