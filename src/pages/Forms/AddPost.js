@@ -33,7 +33,7 @@ function AddPost() {
       onSubmit={ onSubmit}
       validationSchema={validateform}
       validateOnBlur={false}
-      validateOnChange={false}
+      validateOnChange={true}
     >
       <Form>
         <h1>ADD POST HERE</h1>
