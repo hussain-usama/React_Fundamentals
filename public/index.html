@@ -24,6 +24,28 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <script>
+      const tabIdKey = "tabIdStorageKey"
+      const initTabId = () => {
+        const id = sessionStorage.getItem(tabIdKey)
+        if (id) {
+          sessionStorage.removeItem(tabIdKey)
+          return id
+        }
+        let newId = Date.now()
+        const channel = new BroadcastChannel("my-channel");
+        channel.postMessage(newId);
+        localStorage.setItem('activetabID', newId)
+        return newId
+      }
+      window.addEventListener("beforeunload", () => {
+        sessionStorage.setItem(tabIdKey, tabId)
+      })
+      const tabId = initTabId()
+      sessionStorage.setItem('currtabID', tabId)
+      console.log("currTab" + " " + tabId)
+      // console.log("activeTab" + " " + localStorage.getItem('activetabID'))
+    </script>
     <title>React App</title>
   </head>
   <body>

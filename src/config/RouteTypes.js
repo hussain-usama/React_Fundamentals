@@ -10,14 +10,16 @@ import { Navigate, Route } from 'react-router-dom'
 //   }
 // }
 export const PrivateRoutes=({children,...rest})=>{
-  let auth =  localStorage.getItem("token")
+  let isAuthorized =  localStorage.getItem("token")
+  const auth = localStorage.getItem('activetabID') === sessionStorage.getItem('currtabID') ? isAuthorized : false;
   return(
      auth ? children : <Navigate to="/" />
   )
 }
 
 export const PublicRoutes=({children,...rest})=>{
-  let auth =  localStorage.getItem("token")
+  let isAuthorized =  localStorage.getItem("token")
+  const auth = localStorage.getItem('activetabID') === sessionStorage.getItem('currtabID') ? isAuthorized : false;
   return(
      !auth ? children : <Navigate to={'/dashboard'} />
   )

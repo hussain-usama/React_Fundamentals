@@ -28,6 +28,10 @@ function Login() {
       password: "cityslicka"
     }
     LoginUser(obj)
+    let currtabID = sessionStorage.getItem("currtabID")
+    localStorage.setItem('activetabID',currtabID)
+    const channel = new BroadcastChannel("my-channel");
+    channel.postMessage(currtabID);
     dispatch(loginData(obj))
     localStorage.setItem("token", "user")
     navigate("/dashboard")
