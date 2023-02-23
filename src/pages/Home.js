@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useTransition } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,16 +20,37 @@ function Home() {
       
     }
   },[data])
+
+  useEffect(()=>{
+    try {
+      if(searchValue){
+        let timeout=setTimeout(async() => {
+          const response =await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${searchValue}`)
+          if(response.status===200){
+            setpostList(response.data)
+          }
+          console.log(response,'searchapi')
+        }, 500);
+        return (()=>{
+          clearTimeout(timeout)
+        })
+      }else{
+        setpostList(data)
+      }
+    } catch (error) {
+      console.log(error,'searchapi')
+    }
+  },[searchValue])
   
   const SearchList=(e)=>{
     try {
       let value=e.target.value
       setSearchValue(value)
-      startTransition(()=>{
-        debugger
-        let _array=data.filter(item=>item.title.includes(value))
-        setpostList(_array)
-      })
+      // startTransition(()=>{
+      //   debugger
+      //   let _array=data.filter(item=>item.title.includes(value))
+      //   setpostList(_array)
+      // })
 
     } catch (error) {
       
@@ -44,26 +66,28 @@ function Home() {
     }
   }
 
-
   return (
     <div className="">
       <h1>HOME</h1>
       <div className="d-flex">
         <h3>All Posts</h3>
-        <input placeholder="Search..." value={searchValue} onChange={SearchList} />
+        <input placeholder="add keyword 1 or 2 or 3" value={searchValue} onChange={SearchList} /><br />
         <button onClick={()=>navigate("/addPost")}>Add Post</button>
       </div>
       {(loader) ?
         <h3>Loading...</h3>
         :
         <>
-          {isPending ?
+          {/* {isPending ?
           <h4>Searching...</h4>
           :
           postList && postList.map((item, index) => {
             return <li className="cursor-pointer" key={index} onClick={()=>checkPost(index)}>{item.title}</li>
           })
-        }
+        } */}
+          {postList && postList.map((item, index) => {
+            return <li className="cursor-pointer" key={index} onClick={()=>checkPost(index)}>{item.title}</li>
+          })}
         </>
       }
     </div>
