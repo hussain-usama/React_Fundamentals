@@ -10,7 +10,10 @@ function RouterComp() {
             <Suspense>
                 <Routes>
                     {routes.map(({ component: Component, path, public: pub }, index) => {
-                        if (pub) {
+                        if(pub && pub==='both'){
+                            <Route path="*" key={index} element={<NotFound/>}  />
+                        }
+                        else if (pub) {
                             return (
                                 <Route path={path} key={index} element={
                                     <PublicRoutes>
