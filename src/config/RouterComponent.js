@@ -7,7 +7,7 @@ import NotFound from "./NotFound";
 function RouterComp() {
     return (
         <>
-            <Suspense>
+            <Suspense fallback={<h1>Please Wait...</h1>}>
                 <Routes>
                     {routes.map(({ component: Component, path, public: pub }, index) => {
                         if(pub && pub==='both'){
