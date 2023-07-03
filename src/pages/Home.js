@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from '../utils/useFetch'
-
+import Loader from "../components/Loader/Loader";
 function Home() {
 
   const [searchValue,setSearchValue]=useState("")
@@ -24,17 +24,18 @@ function Home() {
   useEffect(()=>{
     try {
       if(searchValue){
+       
         let timeout=setTimeout(async() => {
           const response =await axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${searchValue}`)
           if(response.status===200){
             setpostList(response.data)
           }
-          console.log(response,'searchapi')
         }, 500);
         return (()=>{
           clearTimeout(timeout)
         })
-      }else{
+      }
+      else{
         setpostList(data)
       }
     } catch (error) {
@@ -75,7 +76,7 @@ function Home() {
         <button onClick={()=>navigate("/addPost")}>Add Post</button>
       </div>
       {(loader) ?
-        <h3>Loading...</h3>
+          <Loader open={loader}/>
         :
         <>
           {/* {isPending ?

@@ -3,15 +3,16 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { PrivateRoutes, PublicRoutes } from "./RouteTypes";
 import { routes } from "./routes";
 import NotFound from "./NotFound";
+import Loader from "../components/Loader/Loader";
 
 function RouterComp() {
     return (
         <>
-            <Suspense fallback={<h1>Please Wait...</h1>}>
+            <Suspense fallback={<Loader open={true}/>}>
                 <Routes>
                     {routes.map(({ component: Component, path, public: pub }, index) => {
                         if(pub && pub==='both'){
-                            <Route path="*" key={index} element={<NotFound/>}  />
+                            return <Route path="*" key={index} element={<NotFound/>} />
                         }
                         else if (pub) {
                             return (

@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { useFetch } from "../utils/useFetch"
+import Loader from "../components/Loader/Loader"
 
 const Post = (props) => {
 
@@ -23,7 +24,7 @@ const Post = (props) => {
         <>
             <h3>Post {id} Details</h3>
             {loader ?
-                <h3>loading...</h3> :
+                <Loader open={loader}/> :
                 <>
                     <p><strong>TITLE : </strong> {data?.title ?? ""}</p>
                     <p><strong>BODY : </strong>{data?.body ?? ""}</p>

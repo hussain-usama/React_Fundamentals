@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useFetch } from "../utils/useFetch"
+import Loader from "../components/Loader/Loader";
 
 const PostComments=()=>{
     const navigate = useNavigate()
@@ -13,7 +14,7 @@ const PostComments=()=>{
             <h3>COMMENT LIST</h3>
             {
                 loader ? 
-                <h3>loading...</h3>
+                <Loader open={loader}/>
                 :
                 <>
                 {data && data.map((item)=>{

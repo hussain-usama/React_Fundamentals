@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { isProtected } from "../config/RouteTypes";
 import { fetchUsers } from "../redux/Reducers/ApiSlice";
+import Loader from "../components/Loader/Loader";
 
 
 function Dahboard() {
@@ -26,7 +27,7 @@ function Dahboard() {
       <h3>User List</h3>
       {
         ApiSlice.status==="loading" ?
-        <h1>Loading .....</h1>
+        <Loader open={true}/>
         :
         <div>
           {
