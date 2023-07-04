@@ -4,13 +4,15 @@ import { useTransition } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from '../utils/useFetch'
 import Loader from "../components/Loader/Loader";
+import useLocalStorage from "../hooks/useLocalStorage";
 function Home() {
 
-  const [searchValue,setSearchValue]=useState("")
+  // const [searchValue,setSearchValue]=useState("")
   const [postList,setpostList]=useState("")
-  const {data,loader,error}=useFetch("https://jsonplaceholder.typicode.com/posts")
+  const {data,loader}=useFetch("https://jsonplaceholder.typicode.com/posts")
   const navigate = useNavigate()
   const [isPending,startTransition]=useTransition()
+  const [searchValue,setSearchValue]=useLocalStorage('search','')
 
   useEffect(()=>{
     try {
@@ -45,8 +47,8 @@ function Home() {
   
   const SearchList=(e)=>{
     try {
-      let value=e.target.value
-      setSearchValue(value)
+      // let value=e.target.value
+      // setSearchValue(value)
       // startTransition(()=>{
       //   debugger
       //   let _array=data.filter(item=>item.title.includes(value))
@@ -72,7 +74,8 @@ function Home() {
       <h1>HOME</h1>
       <div className="d-flex">
         <h3>All Posts</h3>
-        <input placeholder="add keyword 1 or 2 or 3" value={searchValue} onChange={SearchList} /><br />
+        <input placeholder="add keyword 1 or 2 or 3" value={searchValue} onChange={(e)=>setSearchValue(e.target.value)} />
+        <br />
         <button onClick={()=>navigate("/addPost")}>Add Post</button>
       </div>
       {(loader) ?

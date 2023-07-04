@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from 'yup';
 
@@ -19,7 +18,7 @@ const validateform = Yup.object({
 })
 
 function AddPost() {
-
+  
   const formik = useFormik({
     initialValues,
     onSubmit,
