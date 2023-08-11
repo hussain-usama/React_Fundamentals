@@ -45,6 +45,7 @@ function Dahboard() {
 
     <button onClick={()=>navigate('/home')}>POST MODULES</button>
     <button onClick={()=>navigate('/todos')}>TODOS MODULES</button>
+    <button onClick={()=>navigate('/patterns')}>Constructor Pattern</button>
 
     </div>
   );

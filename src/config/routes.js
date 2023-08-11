@@ -8,6 +8,7 @@ const AddPost = lazy(() => import("../pages/Forms/AddPost"))
 const PostComments = lazy(() => import("../pages/PostComments"))
 const NotFound = lazy(() => import("./NotFound"))
 const Todos = lazy(() => import("../pages/Todos/Todos"))
+const DesignPattern = lazy(() => import("../pages/DesignPattern/index"))
 
 /* DEFINING ROUTES */
 /* public false component will only visible if user logged in */
@@ -19,6 +20,7 @@ export const routes = [
     { component: AddPost, public: false, path: '/addPost' },
     { component: PostComments, public: false, path: '/posts/:id/comments' },
     { component: Todos, public: false, path: '/todos' },
+    { component: DesignPattern, public: false, path: '/patterns' },
     { component: NotFound, public: 'both', path: '*' },
 
 ]
